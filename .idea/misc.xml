@@ -3,4 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.13 (InvertedPendulum)" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="~/PycharmProjects/Rotating-Inverted-Pendulum-/.venv" project-jdk-type="Python SDK" />
 </project>
