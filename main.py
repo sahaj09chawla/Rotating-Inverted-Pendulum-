@@ -7,7 +7,7 @@ from utils.hardware import connect
 def main():
     app_config = AppConfig()
     controller = BalanceController(app_config.controller)
-    pi_handle, encoder, motor, hall_reference = connect(app_config.hardware)
+    encoder, motor, hall_reference = connect(app_config.hardware)
     running = True
 
     def stop(signum, frame):
@@ -36,7 +36,6 @@ def main():
         motor.close()
         hall_reference.close()
         encoder.close()
-        pi_handle.close()
 
 if __name__ == '__main__':
     main()

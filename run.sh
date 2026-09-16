@@ -9,7 +9,7 @@ usage() {
     cat <<'EOF'
 Usage: ./run.sh [--skip-tests]
 
-Checks that Python, pigpio, and pigpiod are available, then starts main.py.
+Checks that Python and gpiozero are available, then starts main.py.
 Use --skip-tests to start without running the unit tests first.
 EOF
 }
@@ -37,21 +37,20 @@ if "$run_tests"; then
     "$PYTHON_BIN" -m pytest -q
 fi
 
-echo "Checking pigpio library and pigpiod connection..."
+echo "Checking gpiozero library..."
 "$PYTHON_BIN" - <<'PY'
+
 try:
-    import pigpio
+    import gpiozero
 except ImportError as error:
-    raise SystemExit("Error: pigpio is not installed. Install it with: python3 -m pip install pigpio") from error
+    raise SystemExit(
+        "Error: gpiozero is not installed. Install it with: "
+        "python3 -m pip install gpiozero lgpio"
+    ) from error
 
-pi_handle = pigpio.pi()
-if not pi_handle.connected:
-    pi_handle.stop()
-    raise SystemExit("Error: cannot connect to pigpiod. Start it with: sudo systemctl enable --now pigpiod")
-
-pi_handle.stop()
-print("pigpiod is connected.")
+print(f"gpiozero {gpiozero.__version__} is available.")
 PY
 
 echo "Starting controller. Press Ctrl-C to stop safely."
+
 exec "$PYTHON_BIN" main.py
