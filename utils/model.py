@@ -1,14 +1,13 @@
-from dataclasses import dataclass
 from math import cos, sin
 
 from .config import PendulumConfig
 
-@dataclass(frozen=True)
 class State:
-    alpha = 0.0
-    theta = 0.0
-    alpha_dot = 0.0
-    theta_dot = 0.0
+    def __init__(self, theta= 0.0, alpha_dot=0.0, theta_dot=0.0, alpha=0.0):
+        self.alpha = alpha
+        self.theta = theta
+        self.alpha_dot = theta
+        self.theta_dot = theta_dot
 
 #fix this
 def acceleration(state: State, arm_torque, pendulum_config: PendulumConfig):

@@ -59,7 +59,7 @@ class A4998Stepper:
         self.rate_hz = 0.0
         self.request_velocity = 0.0
         self.position_encoder = position_encoder
-        self.steering_limiter = SteeringLimiter(hardware_config.motor_angle_limit)
+        self.steering_limiter = SteeringLimiter(hardware_config.motor_angle_limit_rad)
         self.lock = threading.Lock()
         self.stop = threading.Event()
         self.thread = threading.Thread(target=self.run, daemon=True)

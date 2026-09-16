@@ -1,22 +1,29 @@
-from dataclasses import dataclass
-
-@dataclass
 class PID:
-    kp = 0.0
-    ki = 0.0
-    kd = 0.0
-    output_limit = 0.0
-    integral_limit = 0.0
-    derivative_filter= 0.02
-    integral = 0.0
-    previous_error = None
-    filtered_derivative = 0.0
-    raw_derivative = 0.0
-    alpha = 0.0
-    candidate_integral = 0.0
-    unsaturated = 0.0
-    output = 0.0
-    error = 0.0
+    def __init__(
+        self,
+        kp=0.0,
+        ki=0.0,
+        kd=0.0,
+        output_limit=0.0,
+        integral_limit=0.0,
+        derivative_filter=0.02,
+    ):
+        self.kp = kp
+        self.ki = ki
+        self.kd = kd
+        self.output_limit = output_limit
+        self.integral_limit = integral_limit
+        self.derivative_filter = derivative_filter
+
+        self.integral = 0.0
+        self.previous_error = None
+        self.filtered_derivative = 0.0
+        self.raw_derivative = 0.0
+        self.alpha = 0.0
+        self.candidate_integral = 0.0
+        self.unsaturated = 0.0
+        self.output = 0.0
+        self.error = 0.0
 
     def reset(self):
         self.integral = 0.0
