@@ -130,7 +130,7 @@ class HallReference:
     @property
     def referenced(self):
         with self._lock:
-            return self.referenced
+            return self._referenced
 
     def close(self):
         self.callback.cancel()
