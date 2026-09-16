@@ -18,6 +18,7 @@ class HardwareConfig:
     max_step_rate = 1_500.0 #This value will be changed and will be tuned upwards
     hall_active_level = 0
     hall_debounce = 0.050
+    motor_angle_limit = 135.0 * pi / 180.0
 
     @property
     def encoder_counts_per_revolution(self):

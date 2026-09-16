@@ -17,16 +17,15 @@ class PID:
     unsaturated = 0.0
     output = 0.0
     error = 0.0
-    filter_derivative = 0.0
 
     def reset(self):
         self.integral = 0.0
         self.previous_error = None
-        self.filter_derivative = 0.0
+        self.filtered_derivative = 0.0
 
     def update(self, setpoint, measurement, dt):
         if dt <= 0:
-            print("dt is currently not postive")
+            print("dt is currently not positive")
 
         self.error = setpoint - measurement
 

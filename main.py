@@ -17,14 +17,14 @@ def main():
     signal.signal(signal.SIGINT, stop)
     signal.signal(signal.SIGTERM, stop)
     last = time.monotonic()
-    print("Controller Started, Encoder zero is the mechanical upright reference, Ctrl-C stops motor")
+    print("Controller Started, The Hall Effect Sensor establish zero for motor,limited to the configured travel on either side. Ctrl-C stops motor")
     try:
         while running:
             now = time.monotonic()
             dt = now - last
             if dt >= app_config.controller.sample_period:
                 last = now
-                if app_config.enable_after_homing and not hall_reference:
+                if app_config.controller.enable_after_homing and not hall_reference:
                     motor.set_velocity(0.0)
 
                 else:
